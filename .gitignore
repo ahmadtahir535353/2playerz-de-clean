@@ -1,0 +1,73 @@
+# Dependencies & build artifacts
+/node_modules
+/vendor
+/public/build
+/public/build-old
+/public/hot
+/public/dist
+/public/mix-manifest.json
+/.phpunit.cache
+/.phpunit.result.cache
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+auth.json
+*.pem
+*.key
+
+# Service account / credential JSON
+/public/firebase/serviceAccountKey.json
+/storage/app/firebase/*.json
+**/serviceAccountKey*.json
+**/firebase-adminsdk-*.json
+google-credentials*.json
+
+# User-uploaded media
+/public/uploads
+/public/uploads-new
+/public/uploads-old
+/public/storage
+/storage/app/public
+/storage/*.key
+
+# Laravel runtime
+/storage/debugbar
+/storage/logs/*.log
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+!/storage/framework/cache/data/.gitkeep
+!/storage/framework/sessions/.gitkeep
+!/storage/framework/testing/.gitkeep
+!/storage/framework/views/.gitkeep
+
+# Database dumps & backups
+*.sql
+*.sql.gz
+*.zip
+*.tar.gz
+*.bak
+*.bak.*
+.bak
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+.fleet
+.phpactor.json
+Homestead.json
+Homestead.yaml
+
+# Legacy / unused folders left in repo
+/lang-old
+/cgi-bin
+
+# Logs
+npm-debug.log
+yarn-error.log
+*.log

@@ -1,0 +1,12 @@
+@import '../../public/front_web/css/swiper.min.css';
+@import '../../public/front_web/css/slick.css';
+@import '../../public/assets/css/lightbox.css';
+@import '../../public/front_web/css/slick-theme.css';
+@import '../../public/front_web/css/toastr.css';
+@import '../../node_modules/lightbox2/src/css/lightbox.css';
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
