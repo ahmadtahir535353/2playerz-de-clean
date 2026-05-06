@@ -52,6 +52,9 @@ google-credentials*.json
 *.bak
 *.bak.*
 .bak
+# but DO track baseline schema files used by migrations
+!database/migrations/*.sql
+!database/schema/*.sql
 
 # Editor / OS junk
 .DS_Store
