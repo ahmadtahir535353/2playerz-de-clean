@@ -355,13 +355,16 @@ $settings = getSettingValue();
     @stack('css')
 
     <style>
+        html {
+            background: #1a1a1a;
+        }
+
         body {
             visibility: hidden;
         }
 
         body.dark-mode,
-        body.light-mode,
-        body:not(.dark-mode):not(.light-mode) {
+        body.light-mode {
             visibility: visible;
         }
 
