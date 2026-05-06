@@ -28,7 +28,7 @@
         "laravel/socialite": "^5.20",
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.28",
-        "livewire/livewire": "3.5.12",
+        "livewire/livewire": "^3.6.4",
         "mariuzzo/laravel-js-localization": "^1.11",
         "opcodesio/log-viewer": "^3.11",
         "pxlrbt/filament-excel": "^2.3",
