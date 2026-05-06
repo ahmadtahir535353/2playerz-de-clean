@@ -360,7 +360,8 @@ $settings = getSettingValue();
         }
 
         body.dark-mode,
-        body.light-mode {
+        body.light-mode,
+        body:not(.dark-mode):not(.light-mode) {
             visibility: visible;
         }
 
@@ -418,12 +419,11 @@ $settings = getSettingValue();
     <script>
         window.addEventListener('DOMContentLoaded', function() {
             var theme = localStorage.getItem('theme');
-            if (theme) {
-                document.body.classList.add(theme + '-mode');
-            } else {
-                document.body.classList.add("dark" + '-mode');
-                localStorage.setItem("theme", "dark")
+            if (theme !== 'dark' && theme !== 'light') {
+                theme = 'dark';
+                localStorage.setItem('theme', 'dark');
             }
+            document.body.classList.add(theme + '-mode');
         });
     </script>
 
