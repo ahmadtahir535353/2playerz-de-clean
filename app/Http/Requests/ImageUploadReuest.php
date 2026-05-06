@@ -20,7 +20,7 @@ class ImageUploadReuest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'mimes:png,jpg,jpeg,webp,svg',
+            'image' => 'image|mimes:png,jpg,jpeg,webp|extensions:png,jpg,jpeg,webp|max:5120',
         ];
     }
 }

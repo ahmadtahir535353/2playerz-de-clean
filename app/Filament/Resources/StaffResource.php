@@ -135,15 +135,6 @@ class StaffResource extends Resource
                     ->html()
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('password_plain')
-                    ->label(__('messages.staff.password'))
-                    ->searchable()
-                    ->copyable()
-                    ->copyMessage(__('messages.placeholder.password_copied'))
-                    ->copyMessageDuration(1500)
-                    ->default(__('messages.menu.n_a')),
-
-
             ])
             ->filters([
                 //

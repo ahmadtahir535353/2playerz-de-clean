@@ -39,8 +39,6 @@ class CreateStaff extends CreateRecord
         try {
             DB::beginTransaction();
 
-            // Save plain password before hashing
-            $data['password_plain'] = $data['password'];
             $data['password'] = Hash::make($data['password']);
             $data['status'] = !empty($data['status']) ? Staff::ACTIVE : Staff::DEACTIVE;
             $data['type'] = User::STAFF;

@@ -68,7 +68,7 @@ class CustomerProfileController extends Controller
         $request->validate([
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6',
-            'avatar' => 'nullable|image|max:2048',
+            'avatar' => 'nullable|image|max:2048|mimes:jpg,jpeg,png,webp|extensions:jpg,jpeg,png,webp',
             'psn_id' => 'nullable|string|max:255', 
             'xbox_live_id' => 'nullable|string|max:255',
             'who_can_send_messages' => 'required|in:all,following,nobody',
@@ -99,11 +99,13 @@ class CustomerProfileController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            // Clear existing profile media collection to replace old avatar
             $user->clearMediaCollection(User::PROFILE);
-            
-            // Add new avatar using Spatie Media Library
+
+            $avatar = $request->file('avatar');
+            $safeName = 'profile_'.$user->id.'_'.time().'.'.strtolower($avatar->extension());
+
             $user->addMediaFromRequest('avatar')
+                ->usingFileName($safeName)
                 ->toMediaCollection(User::PROFILE, config('app.media_disc', 'public'));
         }
 

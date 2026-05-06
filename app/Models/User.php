@@ -27,6 +27,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\MediaCollection;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Lang;
@@ -41,6 +42,22 @@ class User extends Authenticatable implements FilamentUser, HasName, HasMedia, M
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $imageMimes = ['image/jpeg', 'image/png', 'image/webp'];
+
+        $this->addMediaCollection(self::PROFILE)
+            ->singleFile()
+            ->acceptsMimeTypes($imageMimes);
+
+        $this->addMediaCollection(self::COVER_IMG)
+            ->singleFile()
+            ->acceptsMimeTypes($imageMimes);
+
+        $this->addMediaCollection(self::NEWS_IMAGE)
+            ->acceptsMimeTypes($imageMimes);
     }
 
     /**
@@ -74,9 +91,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasMedia, M
         'last_seen_at',
         'psn_id',
         'xbox_live_id',
-        'is_editor', 
+        'is_editor',
         'is_moderator',
-        'password_plain',
         'fcm_token',
         'who_can_send_messages',
         'message_notification_preference',
@@ -100,7 +116,6 @@ class User extends Authenticatable implements FilamentUser, HasName, HasMedia, M
         'blood_group' => 'string',
         'last_seen_at' => 'datetime',
         'last_activity_at' => 'datetime',
-        'password_plain' => 'string',
         'fcm_token' => 'string',
     ];
 
@@ -444,18 +459,6 @@ class User extends Authenticatable implements FilamentUser, HasName, HasMedia, M
                     ->visible(function (?string $operation) {
                         return $operation == 'create';
                     }),
-                TextInput::make('password_plain')
-                    ->label(__('messages.staff.password') . ':')
-                    ->validationAttribute(__('messages.staff.password'))
-                    ->placeholder(__('messages.staff.password'))
-                    ->default(function (?Model $record) {
-                        return $record?->password_plain ?? '';
-                    })
-                    ->visible(function (?string $operation) {
-                        return $operation == 'edit';
-                    })
-                    ->dehydrated(true),
-
                 Fieldset::make('Label')
                     ->label('')
                     ->schema([

@@ -30,7 +30,6 @@ class VerifyEmailController extends Controller
                 ->route('filament.auth.auth.login')
                 ->with([
                     'prefill_email' => $user->email,
-                    'prefill_password' => $user->password_plain,
                 ]);
         }
 

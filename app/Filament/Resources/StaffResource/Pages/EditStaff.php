@@ -50,9 +50,9 @@ class EditStaff extends EditRecord
 
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        // If password_plain is updated, also update the hashed password
-        if (isset($data['password_plain']) && !empty($data['password_plain'])) {
-            $data['password'] = Hash::make($data['password_plain']);
+        if (isset($data['password']) && !empty($data['password'])
+            && !preg_match('/^\$2[ayb]\$/', $data['password'])) {
+            $data['password'] = Hash::make($data['password']);
         }
 
         return parent::handleRecordUpdate($record, $data);

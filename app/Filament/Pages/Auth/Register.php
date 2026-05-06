@@ -138,7 +138,6 @@ class Register extends BaseRegister
                 $data['is_default'] = false;
             }
 
-            $data['password_plain'] = $plainPassword; // your extra column
             $data['password'] = Hash::make($plainPassword); // for auth
             $data['type'] = User::STAFF;
 
